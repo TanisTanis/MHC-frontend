@@ -1,0 +1,98 @@
+<div *ngIf="invalid">
+  <ul class="error-list">
+    <li *ngFor="let error of errors">{{ error }}</li>
+  </ul>
+</div>
+
+<form id="register_form">
+  <div class="form_div">
+    <div>
+      <label for="firstName-register">First Name</label>
+    </div>
+    <div>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName-register"
+        [(ngModel)]="model.firstName"
+        required
+      />
+    </div>
+  </div>
+  <div class="form_div">
+    <div>
+      <label for="lastName-register">Last Name</label>
+    </div>
+    <div>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName-register"
+        [(ngModel)]="model.lastName"
+        required
+      />
+    </div>
+  </div>
+  <div class="form_div">
+    <div>
+      <label for="email-register">Email</label>
+    </div>
+    <div>
+      <input
+        type="email"
+        id="email-register"
+        name="email"
+        [(ngModel)]="model.email"
+        required
+      />
+    </div>
+  </div>
+  <div class="form_div">
+    <div>
+      <label for="password-register">Password</label>
+    </div>
+    <div>
+      <input
+        type="password"
+        id="password-register"
+        name="password"
+        required
+        [(ngModel)]="model.password"
+      />
+    </div>
+  </div>
+  <div class="form_div">
+    <div>
+      <label for="password-confirm">Confirm Password</label>
+    </div>
+    <div>
+      <input
+        type="password"
+        id="password-confirm"
+        name="password-confirm"
+        required
+      />
+    </div>
+  </div>
+  <div class="form_div">
+    <div>
+      <label for="phone-register">Phone Number</label>
+    </div>
+    <div>
+      <input
+        type="text"
+        id="phone-register"
+        placeholder="7602154056"
+        name="phone"
+        [(ngModel)]="model.phone"
+      />
+    </div>
+  </div>
+</form>
+
+<div class="btn_div">
+  <button class="btn return" [routerLink]="['']">Go Back</button>
+  <button class="btn register" id="login_button" (click)="handleRegister()">
+    Register
+  </button>
+</div>

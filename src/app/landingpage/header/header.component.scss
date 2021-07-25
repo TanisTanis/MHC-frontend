@@ -1,0 +1,27 @@
+.hero {
+  color: white;
+  text-align: center;
+  padding: 15em 0;
+  background: #222;
+
+  @supports (background-blend-mode: multiply) {
+    background: url(../../../assets/images/notebook.png),
+      radial-gradient(#444, #111);
+    background-blend-mode: multiply;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.primary-title {
+  font-size: 4rem;
+  font-size: clamp(3rem, calc(5vw + 1rem), 4.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hero {
+  --clr-accent: #faa700;
+}

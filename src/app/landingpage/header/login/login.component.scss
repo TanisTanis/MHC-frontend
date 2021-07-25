@@ -1,0 +1,55 @@
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--clr-text, #fff);
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  padding: 0.5em 1.25em;
+  background: var(--clr-accent, blue);
+  border-radius: 0.25em;
+  transition: transform 250ms ease-in-out, opacity 250ms linear;
+  margin-top: 20px;
+  border: none;
+  padding: 0.7em 1.25em;
+
+  &.return {
+    --clr-accent: #92a8d1;
+    margin-left: 10px;
+  }
+}
+
+.btn:hover,
+.btn:focus {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+label {
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid white;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.form_div {
+  margin: 10px;
+}
+
+.btn_div {
+  justify-content: center;
+}
+
+.login {
+  margin-left: 15px;
+}
