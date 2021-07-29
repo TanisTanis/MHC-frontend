@@ -11,6 +11,9 @@ import { validate } from 'json-schema';
 })
 export class LoginComponent {
 
+  invalid: boolean = false;
+  errors: String[] = [];
+
 
   constructor(private userService: UserService) {
   }
@@ -20,8 +23,15 @@ export class LoginComponent {
   handleLogIn() {
     console.log(this.model);
     const validLogIn = validateLogIn(this.model.email, this.model.password);
-    if (validLogIn) {
+    if (validLogIn.valid) {
       console.log('login valid')
+    } else {
+      this.invalid = true;
+      this.errors = [];
+      for (let i = 0; i < validLogIn.errors.length; i++) {
+        let error = validLogIn.errors[i];
+        this.errors.push(error);
+      }
     }
   }
 

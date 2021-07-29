@@ -11,7 +11,25 @@ export function validateLogIn(email: string, password: string) {
   const multipleAtCheck = atCheck.test(email);
   const passValid = password.length > 5;
   const allValid = validEmail && multipleAtCheck && passValid;
-  return allValid;
+
+  const validationObj: ValidationResponse = {
+    valid: allValid,
+    errors: []
+  }
+
+  const validations: boolean[] = [validEmail, multipleAtCheck, passValid];
+
+  const errorMessages: String[] = ['Email is invalid', 'Email is invalid', 'Password is invalid'];
+
+  for (let i = 0; i < validations.length; i++) {
+    if (!validations[i]) {
+      if (validationObj.errors.indexOf(errorMessages[i]) === -1) {
+        validationObj.errors.push(errorMessages[i]);
+      }
+    }
+  }
+
+  return validationObj;
 }
 
 export function validateRegister(email: string, password: string, firstName: string, lastName: string, phone: string) {

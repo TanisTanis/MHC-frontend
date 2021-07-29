@@ -1,3 +1,9 @@
+<div *ngIf="invalid">
+  <ul class="error-list">
+    <li *ngFor="let error of errors">{{ error }}</li>
+  </ul>
+</div>
+
 <form id="login_form" #loginForm="ngForm">
   <div class="form_div">
     <div>
