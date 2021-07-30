@@ -4,7 +4,15 @@
   </ul>
 </div>
 
-<form id="register_form">
+<div *ngIf="confirmEmailText">
+  <p>
+    Thank you for registering with us! Please confirm your email, and then click
+    the button below to log in.
+  </p>
+  <button>Log In</button>
+</div>
+
+<form id="register_form" *ngIf="formActive">
   <div class="form_div">
     <div>
       <label for="firstName-register">First Name</label>

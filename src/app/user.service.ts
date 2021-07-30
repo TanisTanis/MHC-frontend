@@ -17,8 +17,8 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiServerUrl}/user/all`);
   }
 
-  public addUser(user: RegisterUser): Observable<User> | Observable<HttpErrorResponse> {
-    return this.http.post<RegisterUser>(`${this.apiServerUrl}/api/auth/signup`, user);
+  public addUser(user: RegisterUser): Observable<String> {
+    return this.http.post<String>(`${this.apiServerUrl}/api/auth/signup`, user);
   }
 
   public updateUser(user: User): Observable<User> {
