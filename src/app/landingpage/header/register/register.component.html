@@ -5,11 +5,10 @@
 </div>
 
 <div *ngIf="confirmEmailText">
-  <p>
+  <p class="register_success">
     Thank you for registering with us! Please confirm your email, and then click
     the button below to log in.
   </p>
-  <button>Log In</button>
 </div>
 
 <form id="register_form" *ngIf="formActive">
@@ -24,6 +23,8 @@
         id="firstName-register"
         [(ngModel)]="model.firstName"
         required
+        (change)="handleFirstNameChange()"
+        [ngClass]="{ complete: firstNameComplete }"
       />
     </div>
   </div>
@@ -38,6 +39,8 @@
         id="lastName-register"
         [(ngModel)]="model.lastName"
         required
+        (change)="handleLastNameChange()"
+        [ngClass]="{ complete: lastNameComplete }"
       />
     </div>
   </div>
@@ -52,6 +55,8 @@
         name="email"
         [(ngModel)]="model.email"
         required
+        (change)="handleEmailChange()"
+        [ngClass]="{ complete: emailComplete }"
       />
     </div>
   </div>
@@ -66,6 +71,8 @@
         name="password"
         required
         [(ngModel)]="model.password"
+        (change)="handlePasswordChange()"
+        [ngClass]="{ complete: passwordComplete }"
       />
     </div>
   </div>
@@ -79,7 +86,13 @@
         id="password-confirm"
         name="password-confirm"
         required
+        (change)="handleConfirmPasswordChange()"
+        [ngClass]="{ complete: confirmPasswordComplete }"
+        [ngClass]="{ error: passwordsDontMatch }"
       />
+    </div>
+    <div *ngIf="passwordsDontMatch">
+      <p class="password_error">Passwords do not match.</p>
     </div>
   </div>
   <div class="form_div">
@@ -92,7 +105,10 @@
         id="phone-register"
         placeholder="7602154056"
         name="phone"
+        required
         [(ngModel)]="model.phone"
+        (change)="handlePhoneChange()"
+        [ngClass]="{ complete: phoneComplete }"
       />
     </div>
   </div>
@@ -100,7 +116,20 @@
 
 <div class="btn_div">
   <button class="btn return" [routerLink]="['']">Go Back</button>
-  <button class="btn register" id="login_button" (click)="handleRegister()">
+  <button
+    *ngIf="!registered"
+    class="btn register"
+    id="register_button"
+    (click)="handleRegister()"
+  >
     Register
+  </button>
+  <button
+    *ngIf="registered"
+    class="btn login"
+    id="login_button"
+    [routerLink]="['../login']"
+  >
+    Log In
   </button>
 </div>

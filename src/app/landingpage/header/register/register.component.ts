@@ -10,10 +10,21 @@ import { validateRegister } from '../validations';
 })
 export class RegisterComponent {
 
+
   formActive: boolean = true;
   confirmEmailText: boolean = false;
   invalid: boolean = false;
   errors: String[] = [];
+  registered = false;
+  confirmedPassword: String = '';
+  passwordsDontMatch: boolean = false;
+
+  firstNameComplete: boolean = false;
+  lastNameComplete: boolean = false;
+  emailComplete: boolean = false;
+  passwordComplete: boolean = false;
+  confirmPasswordComplete: boolean = false;
+  phoneComplete: boolean = false;
 
   constructor(private userService: UserService) {
     this.userService = userService;
@@ -21,40 +32,89 @@ export class RegisterComponent {
 
   model = new RegisterUser('', '', '', '', '');
 
-  handleRegister() {
+  handleFirstNameChange() {
+    let currentVal = this.model.firstName;
+    if (currentVal.length > 1) {
+      this.firstNameComplete = true;
+    } else {
+      this.firstNameComplete = false;
+    }
+  }
 
-    const validInputs = validateRegister(this.model.email, this.model.password, this.model.firstName, this.model.lastName, this.model.phone);
+  handleLastNameChange() {
+    let currentVal = this.model.lastName;
+    if (currentVal.length > 1) {
+      this.lastNameComplete = true;
+    } else {
+      this.lastNameComplete = false;
+    }
+  }
+
+  handleEmailChange() {
+    let currentVal = this.model.email;
+    if (currentVal.length > 5) {
+      this.emailComplete = true;
+    } else {
+      this.emailComplete = false;
+    }
+  }
+
+  handlePasswordChange() {
+    let currentVal = this.model.password;
+    if (currentVal.length >= 5) {
+      this.passwordComplete = true;
+    } else {
+      this.passwordComplete = false;
+    }
+  }
+
+  handleConfirmPasswordChange() {
+    const currentVal = (<HTMLInputElement>document.getElementById('password-confirm')).value;
+    if (currentVal === this.model.password) {
+      this.confirmPasswordComplete = true;
+      this.passwordsDontMatch = false;
+    } else {
+      this.confirmPasswordComplete = false;
+      this.passwordsDontMatch = true;
+    }
+  }
+
+  handlePhoneChange() {
+    let currentVal = this.model.phone;
+    if (currentVal.length >= 10) {
+      this.phoneComplete = true;
+    } else {
+      this.phoneComplete = false;
+    }
+  }
+
+  handleRegister() {
+    const confirmPassVal = (<HTMLInputElement>document.getElementById('password-confirm')).value;
+    const validInputs = validateRegister(this.model.email, this.model.password, confirmPassVal, this.model.firstName, this.model.lastName, this.model.phone);
 
     if (validInputs.valid) {
 
       this.invalid = false;
-
       this.userService.addUser(this.model).subscribe(
-
-        (data: String) => {
-          console.log(data);
-
-          this.confirmEmailText = true;
-          this.formActive = false;
-
-      }, (error) => {
-        console.log(error);
-
-        const message = error.error.text;
-        this.invalid = true;
-        this.errors.push(message);
-
-      });
-    } else {
+          (data: any) => {
+            this.confirmEmailText = true;
+            this.formActive = false;
+            this.registered = true;
+        },
+          (err) => {
+            const message = err.error.message;
+            this.invalid = true;
+            this.errors.push(message);
+        }
+      )} else {
 
       this.invalid = true;
       this.errors = [];
 
       for (let i = 0; i < validInputs.errors.length; i++) {
-        let error = validInputs.errors[i];
+        const error = validInputs.errors[i];
         this.errors.push(error);
       }
     }
   }
-
 }

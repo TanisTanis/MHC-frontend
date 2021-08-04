@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "./user";
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from "src/environments/environment";
 import { RegisterUser } from "./landingpage/header/register/userRegister";
 
@@ -17,8 +17,8 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiServerUrl}/user/all`);
   }
 
-  public addUser(user: RegisterUser): Observable<String> {
-    return this.http.post<String>(`${this.apiServerUrl}/api/auth/signup`, user);
+  public addUser(user: RegisterUser): Observable<User> {
+    return this.http.post<User>(`${this.apiServerUrl}/api/auth/signup`, user);
   }
 
   public updateUser(user: User): Observable<User> {
