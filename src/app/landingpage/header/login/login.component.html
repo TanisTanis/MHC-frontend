@@ -16,7 +16,13 @@
         type="email"
         id="email-login"
         required
+        (change)="handleEmailChange()"
+        [ngClass]="{ complete: validEmail }"
+        [ngClass]="{ email_error: emailError }"
       />
+    </div>
+    <div *ngIf="emailError">
+      <p class="error">Email is invalid.</p>
     </div>
   </div>
   <div class="form_div">
@@ -30,6 +36,8 @@
         type="password"
         id="password-login"
         required
+        (change)="handlePasswordChange()"
+        [ngClass]="{ complete: validPassword }"
       />
     </div>
   </div>
