@@ -16,6 +16,10 @@ export class LoginComponent {
   emailError: boolean = false;
   validPassword: boolean = false;
 
+  resendEmail: boolean = false;
+  storedEmail: string = '';
+  resendConfirmation: boolean = false;
+
   constructor(private userService: UserService) {}
 
   model = new UserInfo('', '');
@@ -41,7 +45,30 @@ export class LoginComponent {
   handleLogIn() {
     const validLogIn = validateLogIn(this.model.email, this.model.password);
     if (validLogIn.valid) {
-      console.log('login valid');
+      this.userService.logIn(this.model.email, this.model.password).subscribe(
+        (res) => {
+          console.log(res);
+          this.invalid = false;
+          this.resendEmail = false;
+        },
+        (err) => {
+          console.log(err);
+
+          if (
+            err.error.message ===
+            'Account has not been enabled yet. Please check your email to confirm.'
+          ) {
+            this.resendEmail = true;
+            this.storedEmail = this.model.email;
+          } else {
+            this.resendEmail = false;
+            this.storedEmail = '';
+          }
+
+          this.invalid = true;
+          this.errors = [err.error.message];
+        }
+      );
     } else {
       this.invalid = true;
       this.errors = [];
@@ -50,5 +77,17 @@ export class LoginComponent {
         this.errors.push(error);
       }
     }
+  }
+
+  handleResendEmail() {
+    this.userService.resendEmail(this.storedEmail).subscribe(
+      (res) => {
+        this.resendConfirmation = true;
+        this.invalid = false;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

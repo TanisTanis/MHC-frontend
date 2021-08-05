@@ -23,9 +23,16 @@ export class UserService {
   }
 
   public logIn(email: string, password: string) {
-    return this.http.post<Boolean>(`${this.apiServerUrl}/user/login`, {
+    return this.http.post<Boolean>(`${this.apiServerUrl}/api/auth/login`, {
       email: email,
       password: password,
     });
+  }
+
+  public resendEmail(email: string): Observable<any> {
+    return this.http.post<string>(
+      `${this.apiServerUrl}/api/auth/signup/resendConfirmation`,
+      email
+    );
   }
 }

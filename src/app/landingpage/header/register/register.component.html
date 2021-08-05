@@ -12,106 +12,111 @@
 </div>
 
 <form id="register_form" *ngIf="formActive">
-  <div class="form_div">
-    <div>
-      <label for="firstName-register">First Name</label>
+  <section class="register_column">
+    <div class="form_div">
+      <div>
+        <label for="firstName-register">First Name</label>
+      </div>
+      <div>
+        <input
+          type="text"
+          name="firstName"
+          id="firstName-register"
+          [(ngModel)]="model.firstName"
+          required
+          (change)="handleFirstNameChange()"
+          [ngClass]="{ complete: firstNameComplete }"
+        />
+      </div>
     </div>
-    <div>
-      <input
-        type="text"
-        name="firstName"
-        id="firstName-register"
-        [(ngModel)]="model.firstName"
-        required
-        (change)="handleFirstNameChange()"
-        [ngClass]="{ complete: firstNameComplete }"
-      />
+    <div class="form_div">
+      <div>
+        <label for="lastName-register">Last Name</label>
+      </div>
+      <div>
+        <input
+          type="text"
+          name="lastName"
+          id="lastName-register"
+          [(ngModel)]="model.lastName"
+          required
+          (change)="handleLastNameChange()"
+          [ngClass]="{ complete: lastNameComplete }"
+        />
+      </div>
     </div>
-  </div>
-  <div class="form_div">
-    <div>
-      <label for="lastName-register">Last Name</label>
+    <div class="form_div">
+      <div>
+        <label for="email-register">Email</label>
+      </div>
+      <div>
+        <input
+          type="email"
+          id="email-register"
+          name="email"
+          [(ngModel)]="model.email"
+          required
+          (change)="handleEmailChange()"
+          [ngClass]="{ complete: emailComplete }"
+        />
+      </div>
     </div>
-    <div>
-      <input
-        type="text"
-        name="lastName"
-        id="lastName-register"
-        [(ngModel)]="model.lastName"
-        required
-        (change)="handleLastNameChange()"
-        [ngClass]="{ complete: lastNameComplete }"
-      />
+  </section>
+
+  <section class="register_column">
+    <div class="form_div">
+      <div>
+        <label for="password-register">Password</label>
+      </div>
+      <div>
+        <input
+          type="password"
+          id="password-register"
+          name="password"
+          required
+          [(ngModel)]="model.password"
+          (change)="handlePasswordChange()"
+          [ngClass]="{ complete: passwordComplete }"
+        />
+      </div>
     </div>
-  </div>
-  <div class="form_div">
-    <div>
-      <label for="email-register">Email</label>
+    <div class="form_div">
+      <div>
+        <label for="password-confirm">Confirm Password</label>
+      </div>
+      <div>
+        <input
+          type="password"
+          id="password-confirm"
+          name="password-confirm"
+          required
+          (change)="handleConfirmPasswordChange()"
+          [ngClass]="{ complete: confirmPasswordComplete }"
+          [ngClass]="{ error: passwordsDontMatch }"
+        />
+      </div>
+      <div *ngIf="passwordsDontMatch">
+        <p class="password_error">Passwords do not match.</p>
+      </div>
     </div>
-    <div>
-      <input
-        type="email"
-        id="email-register"
-        name="email"
-        [(ngModel)]="model.email"
-        required
-        (change)="handleEmailChange()"
-        [ngClass]="{ complete: emailComplete }"
-      />
+    <div class="form_div">
+      <div>
+        <label for="phone-register">Phone Number</label>
+      </div>
+      <div>
+        <input
+          type="text"
+          id="phone-register"
+          placeholder="7602154056"
+          name="phone"
+          required
+          [(ngModel)]="model.phone"
+          (change)="handlePhoneChange()"
+          [ngClass]="{ complete: phoneComplete }"
+        />
+      </div>
     </div>
-  </div>
-  <div class="form_div">
-    <div>
-      <label for="password-register">Password</label>
-    </div>
-    <div>
-      <input
-        type="password"
-        id="password-register"
-        name="password"
-        required
-        [(ngModel)]="model.password"
-        (change)="handlePasswordChange()"
-        [ngClass]="{ complete: passwordComplete }"
-      />
-    </div>
-  </div>
-  <div class="form_div">
-    <div>
-      <label for="password-confirm">Confirm Password</label>
-    </div>
-    <div>
-      <input
-        type="password"
-        id="password-confirm"
-        name="password-confirm"
-        required
-        (change)="handleConfirmPasswordChange()"
-        [ngClass]="{ complete: confirmPasswordComplete }"
-        [ngClass]="{ error: passwordsDontMatch }"
-      />
-    </div>
-    <div *ngIf="passwordsDontMatch">
-      <p class="password_error">Passwords do not match.</p>
-    </div>
-  </div>
-  <div class="form_div">
-    <div>
-      <label for="phone-register">Phone Number</label>
-    </div>
-    <div>
-      <input
-        type="text"
-        id="phone-register"
-        placeholder="7602154056"
-        name="phone"
-        required
-        [(ngModel)]="model.phone"
-        (change)="handlePhoneChange()"
-        [ngClass]="{ complete: phoneComplete }"
-      />
-    </div>
-  </div>
+  </section>
 </form>
 
 <div class="btn_div">

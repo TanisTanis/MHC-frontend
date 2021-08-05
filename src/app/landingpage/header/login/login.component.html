@@ -4,6 +4,15 @@
   </ul>
 </div>
 
+<div *ngIf="resendEmail">
+  <button *ngIf="!resendConfirmation" class="btn" (click)="handleResendEmail()">
+    Resend Email
+  </button>
+  <p *ngIf="resendConfirmation">
+    An email has been sent to your account. Please confirm.
+  </p>
+</div>
+
 <form id="login_form" #loginForm="ngForm">
   <div class="form_div">
     <div>
