@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { UserInfo } from './user';
-import { UserService } from 'src/app/user.service';
+import { LoginService } from 'src/app/services/login.service';
 import { validateLogIn, validatePassword } from '../validations';
 import { validateEmail } from '../validations';
+import { ValidationResponse } from '../validations';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,11 @@ export class LoginComponent {
   storedEmail: string = '';
   resendConfirmation: boolean = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private loginService: LoginService) {}
 
-  model = new UserInfo('', '');
+  model: UserInfo = new UserInfo('', '');
 
-  handleEmailChange() {
+  handleEmailChange(): void {
     if (validateEmail(this.model.email)) {
       this.validEmail = true;
       this.emailError = false;
@@ -34,7 +35,7 @@ export class LoginComponent {
     }
   }
 
-  handlePasswordChange() {
+  handlePasswordChange(): void {
     if (validatePassword(this.model.password)) {
       this.validPassword = true;
     } else {
@@ -42,14 +43,18 @@ export class LoginComponent {
     }
   }
 
-  handleLogIn() {
-    const validLogIn = validateLogIn(this.model.email, this.model.password);
+  handleLogIn(): void {
+    const validLogIn: ValidationResponse = validateLogIn(
+      this.model.email,
+      this.model.password
+    );
     if (validLogIn.valid) {
-      this.userService.logIn(this.model.email, this.model.password).subscribe(
+      this.loginService.logIn(this.model.email, this.model.password).subscribe(
         (res) => {
           console.log(res);
           this.invalid = false;
           this.resendEmail = false;
+          window.location.href = `/u/${res}`;
         },
         (err) => {
           console.log(err);
@@ -79,13 +84,13 @@ export class LoginComponent {
     }
   }
 
-  handleResendEmail() {
-    this.userService.resendEmail(this.storedEmail).subscribe(
-      (res) => {
+  handleResendEmail(): void {
+    this.loginService.resendEmail(this.storedEmail).subscribe(
+      (res): void => {
         this.resendConfirmation = true;
         this.invalid = false;
       },
-      (err) => {
+      (err): void => {
         console.log(err);
       }
     );

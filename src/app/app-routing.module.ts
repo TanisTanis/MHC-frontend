@@ -7,25 +7,50 @@ import { LoginComponent } from './landingpage/header/login/login.component';
 import { HeaderComponent } from './landingpage/header/header.component';
 import { RegisterComponent } from './landingpage/header/register/register.component';
 import { MainpageComponent } from './landingpage/mainpage/mainpage.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
-  {path: '', component: MainpageComponent, outlet: 'info'},
-  {path: '', component: HeaderComponent, outlet: "primary", children: [
-    {path: '', component: ButtonsComponent, outlet: "secondary"},
-  ]},
-  {path: 'login', component: HeaderComponent, outlet: "primary", children: [
-    {path: '', component: LoginComponent, outlet: "secondary"}
-  ]},
-  {path: 'register', component: HeaderComponent, outlet: "primary", children: [
-    {path: '', component: RegisterComponent, outlet: "secondary"}
-  ]},
-  {path: '**', component: HeaderComponent, outlet: "primary", children: [
-    {path: '', component: NotfoundComponent, outlet: "secondary"}
-  ]}
+  { path: 'u/:id', component: UserPageComponent, outlet: 'primary' },
+  {
+    path: '',
+    component: HeaderComponent,
+    outlet: 'primary',
+    children: [
+      { path: '', component: ButtonsComponent, outlet: 'secondary' },
+      { path: '', component: MainpageComponent, outlet: 'info' },
+    ],
+  },
+  {
+    path: 'login',
+    component: HeaderComponent,
+    outlet: 'primary',
+    children: [
+      { path: '', component: LoginComponent, outlet: 'secondary' },
+      { path: '', component: MainpageComponent, outlet: 'info' },
+    ],
+  },
+  {
+    path: 'register',
+    component: HeaderComponent,
+    outlet: 'primary',
+    children: [
+      { path: '', component: RegisterComponent, outlet: 'secondary' },
+      { path: '', component: MainpageComponent, outlet: 'info' },
+    ],
+  },
+  {
+    path: '**',
+    component: HeaderComponent,
+    outlet: 'primary',
+    children: [
+      { path: '', component: NotfoundComponent, outlet: 'secondary' },
+      { path: '', component: MainpageComponent, outlet: 'info' },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

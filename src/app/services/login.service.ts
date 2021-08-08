@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './user';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-  HttpResponse,
-} from '@angular/common/http';
+import { User } from '../user';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { RegisterUser } from './landingpage/header/register/userRegister';
+import { RegisterUser } from '../landingpage/header/register/userRegister';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class LoginService {
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
