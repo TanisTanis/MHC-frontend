@@ -51,10 +51,9 @@ export class LoginComponent {
     if (validLogIn.valid) {
       this.loginService.logIn(this.model.email, this.model.password).subscribe(
         (res) => {
-          console.log(res);
           this.invalid = false;
           this.resendEmail = false;
-          window.location.href = `/u/${res}`;
+          window.location.href = `/u/${res}/home`;
         },
         (err) => {
           console.log(err);

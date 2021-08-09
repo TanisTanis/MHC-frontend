@@ -7,10 +7,10 @@ import { LoginComponent } from './landingpage/header/login/login.component';
 import { HeaderComponent } from './landingpage/header/header.component';
 import { RegisterComponent } from './landingpage/header/register/register.component';
 import { MainpageComponent } from './landingpage/mainpage/mainpage.component';
-import { UserPageComponent } from './user-page/user-page.component';
+import { MainUserPageComponent } from './user-page/main-user-page/main-user-page.component';
 
 const routes: Routes = [
-  { path: 'u/:id', component: UserPageComponent, outlet: 'primary' },
+  { path: 'u/:id/home', component: MainUserPageComponent, outlet: 'primary' },
   {
     path: '',
     component: HeaderComponent,
