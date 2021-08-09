@@ -1,26 +1,26 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-  <a href="#">Home</a>
-  <a href="#">Today</a>
-  <a href="#">Calendar</a>
-  <a href="#">Data</a>
-  <a href="#">Settings</a>
+  <a href="/u/{{ id }}/home">Home</a>
+  <a href="/u/{{ id }}/today">Today</a>
+  <a href="/u/{{ id }}/calendar">Calendar</a>
+  <a href="/u/{{ id }}/data">Data</a>
+  <a href="/u/{{ id }}/settings">Settings</a>
 </div>
 
-<!-- Use any element to open the sidenav -->
 <div class="top_bar">
   <div>
     <span (click)="openNav()" class="open_navbar_arrow">&#8594;</span>
   </div>
-  <div class="header">
-    <a href="#default" class="logo">Mental Calendar</a>
-    <div class="header-right">
-      <a class="active" href="#home">Home</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
-    </div>
+  <div>
+    <span class="header___">Mental Health Calendar</span>
+  </div>
+  <div class="email/logout__">
+    <span class="email__ push_right">{{ email }} Hello</span>
+    <button class="push_right log_out">Log Out</button>
   </div>
 </div>
 
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">Calendar Details Here</div>
+<div id="main">
+  <router-outlet name="user_outlet"></router-outlet>
+</div>

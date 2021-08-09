@@ -8,9 +8,21 @@ import { HeaderComponent } from './landingpage/header/header.component';
 import { RegisterComponent } from './landingpage/header/register/register.component';
 import { MainpageComponent } from './landingpage/mainpage/mainpage.component';
 import { MainUserPageComponent } from './user-page/main-user-page/main-user-page.component';
+import { MonthCalendarComponent } from './user-page/month-calendar/month-calendar.component';
 
 const routes: Routes = [
-  { path: 'u/:id/home', component: MainUserPageComponent, outlet: 'primary' },
+  {
+    path: 'u/:id/home',
+    component: MainUserPageComponent,
+    outlet: 'primary',
+    children: [
+      {
+        path: '',
+        component: MonthCalendarComponent,
+        outlet: 'user_outlet',
+      },
+    ],
+  },
   {
     path: '',
     component: HeaderComponent,
