@@ -20,6 +20,7 @@
 
     :hover {
       color: #f1f1f1;
+      cursor: alias;
     }
   }
 }
@@ -35,6 +36,7 @@
 #main {
   transition: margin-left 0.5s;
   padding: 20px;
+  background-color: #f8f8ff;
 }
 
 @media screen and (max-height: 450px) {

@@ -17,6 +17,7 @@ import { RegisterComponent } from './landingpage/header/register/register.compon
 import { ButtonsComponent } from './landingpage/header/buttons/buttons.component';
 import { MainUserPageComponent } from './user-page/main-user-page/main-user-page.component';
 import { MonthCalendarComponent } from './user-page/month-calendar/month-calendar.component';
+import { TodayViewComponent } from './user-page/today-view/today-view.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MonthCalendarComponent } from './user-page/month-calendar/month-calenda
     ButtonsComponent,
     MainUserPageComponent,
     MonthCalendarComponent,
+    TodayViewComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,55 @@
+<div class="today_view">
+  <div>
+    <p class="today_date">{{ dayTitle }}</p>
+  </div>
+
+  <form *ngIf="!completed">
+    <div class="feeling_buttons">
+      <label for="feeling_form" id="buttons_label__" class="label"
+        >How has today been?</label
+      >
+      <button
+        class="button_feeling"
+        id="btn_bad"
+        (click)="feelingClick('btn_bad')"
+      >
+        Bad
+      </button>
+      <button
+        class="button_feeling"
+        id="btn_ng"
+        (click)="feelingClick('btn_ng')"
+      >
+        Not great
+      </button>
+      <button
+        class="button_feeling"
+        id="btn_med"
+        (click)="feelingClick('btn_med')"
+      >
+        Mediocre
+      </button>
+      <button
+        class="button_feeling"
+        id="btn_gd"
+        (click)="feelingClick('btn_gd')"
+      >
+        Good
+      </button>
+      <button
+        class="button_feeling"
+        id="btn_gre"
+        (click)="feelingClick('btn_gre')"
+      >
+        Great
+      </button>
+    </div>
+    <div class="entry_div">
+      <label for="day_entry" class="label">Entry</label>
+      <textarea
+        id="day_entry_text_area"
+        (keyup)="autoExpand($event)"
+      ></textarea>
+    </div>
+  </form>
+</div>

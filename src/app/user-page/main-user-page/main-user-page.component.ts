@@ -15,6 +15,7 @@ export class MainUserPageComponent implements OnInit {
 
   id: number;
   email: string;
+  page: string;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -35,5 +36,9 @@ export class MainUserPageComponent implements OnInit {
     navBar.style.width = '0px';
     const mainPage = <HTMLElement>document.getElementById('main');
     mainPage.style.marginLeft = '0px';
+  }
+
+  navigation(page: string): void {
+    this.page = page;
   }
 }
