@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,15 +10,25 @@ import { UserService } from 'src/app/services/user.service';
 export class MainUserPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private elementRef: ElementRef
   ) {}
 
   id: number;
   email: string;
-  page: string;
+  page: string = 'home';
+  backgroundColors: { [key: string]: string; } = {
+    // home: '#f0f8ff',
+    home: '#bfc1c2',
+    today: '#f8f8ff',
+    calendar: '#fff5ee',
+    data: '#f0fff0',
+    settings: '#f8f4ff'
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = this.backgroundColors['home'];
     this.userService.getUserData(this.id).subscribe((res) => {
       console.log(res);
     });
@@ -39,6 +49,8 @@ export class MainUserPageComponent implements OnInit {
   }
 
   navigation(page: string): void {
+    console.log(page);
     this.page = page;
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = this.backgroundColors[page];
   }
 }

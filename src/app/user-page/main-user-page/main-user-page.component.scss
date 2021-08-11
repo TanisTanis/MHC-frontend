@@ -36,7 +36,6 @@
 #main {
   transition: margin-left 0.5s;
   padding: 20px;
-  background-color: #f8f8ff;
 }
 
 @media screen and (max-height: 450px) {
@@ -124,7 +123,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  font-size: clamp(1em, calc(5vw + 0.5rem), 2em);
+  font-size: clamp(20px, calc(3vw + 1rem), 50px);
   font-weight: bold;
   color: white;
 }

@@ -2,7 +2,7 @@
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <a (click)="navigation('home')">Home</a>
   <a (click)="navigation('today')">Today</a>
-  <a (click)="navigation('month')">Calendar</a>
+  <a (click)="navigation('calendar')">Calendar</a>
   <a (click)="navigation('data')">Data</a>
   <a (click)="navigation('settings')">Settings</a>
 </div>
@@ -26,5 +26,5 @@
     *ngIf="page === 'today'"
     [email]="email"
   ></app-today-view>
-  <app-month-calendar *ngIf="page === 'month'"></app-month-calendar>
+  <app-month-calendar *ngIf="page === 'calendar'"></app-month-calendar>
 </div>
