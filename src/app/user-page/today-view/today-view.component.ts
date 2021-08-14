@@ -34,7 +34,7 @@ export class TodayViewComponent implements OnInit {
         let button: HTMLButtonElement = <HTMLButtonElement>(
           document.getElementById(btn)
         );
-        button.style.backgroundColor = '#909090';
+        button.style.backgroundColor = '#fdfff5';
       } else {
         let button: HTMLButtonElement = <HTMLButtonElement>(
           document.getElementById(buttonId)

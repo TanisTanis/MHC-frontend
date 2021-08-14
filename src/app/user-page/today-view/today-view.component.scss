@@ -8,9 +8,6 @@
 
 .label {
   font-size: 1.5em;
-}
-
-#buttons_label__ {
   text-decoration: underline;
 }
 
@@ -21,11 +18,18 @@
   justify-content: space-evenly;
 }
 
+.btn-split {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .button_feeling {
   padding: 20px;
   border-radius: 50%;
-  background-color: #909090;
-  border: none;
+  background-color: #fdfff5;
+  border: 2.5px solid black;
   font-size: 18px;
 }
 
@@ -36,10 +40,8 @@
   color: #999;
   font-weight: 400;
   font-size: 30px;
-  font-family: "Ubuntu", Helvetica, Arial, sans-serif;
   width: 100%;
   background: #fff;
-  // background: #36454f;
   border-radius: 3px;
   line-height: 1.5em;
   box-sizing: border-box;

@@ -122,8 +122,9 @@
   top: 7.5%;
   left: 50%;
   transform: translate(-50%, -50%);
+  line-height: normal;
 
-  font-size: clamp(20px, calc(3vw + 1rem), 50px);
+  font-size: clamp(20px, calc(3vw + 1rem), 45px);
   font-weight: bold;
   color: white;
 }
