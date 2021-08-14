@@ -17,18 +17,18 @@ export class MainUserPageComponent implements OnInit {
   id: number;
   email: string;
   page: string = 'home';
-  backgroundColors: { [key: string]: string; } = {
-    // home: '#f0f8ff',
+  backgroundColors: { [key: string]: string } = {
     home: '#bfc1c2',
     today: '#f8f8ff',
     calendar: '#fff5ee',
     data: '#f0fff0',
-    settings: '#f8f4ff'
-  }
+    settings: '#f8f4ff',
+  };
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = this.backgroundColors['home'];
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor =
+      this.backgroundColors['home'];
     this.userService.getUserData(this.id).subscribe((res) => {
       console.log(res);
     });
@@ -51,6 +51,7 @@ export class MainUserPageComponent implements OnInit {
   navigation(page: string): void {
     console.log(page);
     this.page = page;
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = this.backgroundColors[page];
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor =
+      this.backgroundColors[page];
   }
 }
